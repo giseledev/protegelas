@@ -1,16 +1,16 @@
 // Aqui é onde ficará o forumlário com as perguntas
 
 import {
-    Nunito_400Regular,
-    Nunito_600SemiBold,
-    Nunito_700Bold,
-    Nunito_800ExtraBold,
-    useFonts,
+  Nunito_400Regular,
+  Nunito_600SemiBold,
+  Nunito_700Bold,
+  Nunito_800ExtraBold,
+  useFonts,
 } from "@expo-google-fonts/nunito";
 import { useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-import LogoIcone from "./logoIcone";
+import { Image } from "react-native";
 import Setas from "./setas";
 
 const perguntas = [
@@ -51,7 +51,10 @@ export default function Formulario() {
   return (
     <View style={styles.container}>
       <View style={styles.logoContainer}>
-        <LogoIcone />
+        <Image
+          source={require("../../assets/images/logo-oficial.png")}
+          style={{ width: 58, height: 58 }}
+        />
         <Text style={styles.logo}>
           proteg<Text style={styles.logoElas}>ELAS</Text>
         </Text>
@@ -72,7 +75,11 @@ export default function Formulario() {
           style={[styles.pill, respostas[pergunta] && styles.pillMarcado]}
           onPress={() => alternar(pergunta)}
         >
-          <Text style={styles.texto}>{pergunta}</Text>
+          <Text
+            style={[styles.texto, respostas[pergunta] && styles.textoMarcado]}
+          >
+            {pergunta}
+          </Text>
         </TouchableOpacity>
       ))}
 
@@ -198,5 +205,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 5,
+  },
+
+  textoMarcado: {
+    color: "#FFFFFF",
   },
 });
